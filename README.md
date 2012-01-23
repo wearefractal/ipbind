@@ -2,11 +2,11 @@
 
 <table>
 <tr> 
-<td>Package</td><td>APPNAME</td>
+<td>Package</td><td>ipbind</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>NOTHING HERE YET</td>
+<td>Binding for outbound sockets</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -17,12 +17,19 @@
 ## Usage
 
 ```coffee-script
-NOTHING HERE YET
+http = require 'http'
+{Agent} = require 'ipbind'
+opts =
+  agent: new Agent
+  host: 'google.com'
+  bind: 'your outbound ip'
+  
+http.get opts
 ```
 
 ## Examples
 
-You can view further examples in the [example folder.](https://github.com/wearefractal/APPNAME/tree/master/examples)
+You can view further examples in the [example folder.](https://github.com/wearefractal/ipbind/tree/master/examples)
 
 ## LICENSE
 
