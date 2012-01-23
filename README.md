@@ -18,13 +18,21 @@
 
 ```coffee-script
 http = require 'http'
-{Agent} = require 'ipbind'
-opts =
-  agent: new Agent
-  host: 'google.com'
-  bind: 'your outbound ip'
-  
-http.get opts
+{Agent, net} = require 'ipbind'
+
+outbound = '192.168.1.101'
+
+# HTTP
+options =
+  agent: new Agent outbound
+  host: 'checkip.dyndns.org'
+  port: 80
+
+http.get options, (res) ->
+
+# Sockets
+net.createConnection 80, 'checkip.dyndns.org', outbound, ->
+
 ```
 
 ## Examples
