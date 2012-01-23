@@ -1,11 +1,12 @@
 {Agent} = require 'http'
 {Socket, _createServerHandle} = require 'net'
+  
 class BindAgent extends Agent
-  constructor: (options) ->
-  createConnection: (port, host, options) ->
-    throw 'bind missing' if !options or !options.bind
-    socket = new Socket handle: _createServerHandle options.bind
-    socket.connect port, host
-    return socket
+  constructor: (bind) ->
+    super bind
+    @createConnection = (port, host) ->
+      throw 'bind missing' unless bind?
+      socket = new Socket handle: _createServerHandle bind
+      return socket.connect port, host
 
 module.exports = BindAgent
